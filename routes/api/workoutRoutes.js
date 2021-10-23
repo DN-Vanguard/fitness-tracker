@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../../models');
 
-// GET ALL
+// GET ALL + ADDED TOTAL DURATION
 router.get('/', async (req, res) => {
 	try {
 		const workoutsData = await db.Workout.aggregate([
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 	}
 });
 
-// PUSH
+// PUSH TO EXISTING WORKOUTS
 router.put('/:id', async (req, res) => {
 	try {
 		const workoutData = await db.Workout.updateOne(
@@ -54,7 +54,7 @@ router.post('/', async (req, res) => {
 	}
 });
 
-// GATHER LAST 7
+// GATHER LAST 7 WORKOUTS
 router.get('/range', async (req, res) => {
 	try {
 		const workoutData = await db.Workout.aggregate([
